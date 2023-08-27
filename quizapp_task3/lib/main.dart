@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:quizapp_task3/widgets/quiz.dart';
 
-ColorScheme kColorScheme =
-    ColorScheme.fromSeed(seedColor: Color.fromARGB(19, 132, 20, 71));
+ColorScheme kColorScheme = ColorScheme.fromSeed(
+  seedColor: const Color.fromARGB(255, 92, 13, 13),
+);
 
 void main() {
-  runApp(QuizApp());
+  runApp(const QuizApp());
 }
 
 class QuizApp extends StatelessWidget {
@@ -13,22 +15,34 @@ class QuizApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData().copyWith(colorScheme: kColorScheme),
-      home: Scaffold(
-        body: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                Theme.of(context).colorScheme.secondaryContainer,
-                Theme.of(context)
-                    .colorScheme
-                    .secondaryContainer
-                    .withOpacity(0.7),
-              ],
-            ),
-          ),
+      theme: ThemeData().copyWith(
+        useMaterial3: true,
+        colorScheme: kColorScheme,
+        appBarTheme: const AppBarTheme().copyWith(
+          backgroundColor: kColorScheme.primaryContainer,
+          foregroundColor: kColorScheme.primary.withOpacity(0.7),
         ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+              backgroundColor: kColorScheme.secondaryContainer,
+              foregroundColor: kColorScheme.primary.withOpacity(0.7),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10))),
+        ),
+        cardTheme: CardTheme().copyWith(
+            elevation: 10,
+            color: kColorScheme.tertiaryContainer.withOpacity(1.0),
+            margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8)),
+        textTheme: ThemeData().textTheme.copyWith(
+              titleSmall: TextStyle(
+                fontSize: 16,
+                color: kColorScheme.secondary.withOpacity(0.9),
+              ),
+              bodyLarge: TextStyle(fontSize: 16,color: kColorScheme.onTertiaryContainer.withOpacity(0.5))
+            ),
       ),
+      home: const Quiz(),
+      // themeMode: ThemeMode.dark,
     );
   }
 }
