@@ -40,7 +40,7 @@ class Result extends StatelessWidget {
             height: 20,
           ),
           Text(
-            'You have answered ${numCorrectAnswer} Out of ${numquestion}'
+            'You have answered $numCorrectAnswer Out of $numquestion'
                 .toUpperCase(),
             style: Theme.of(context).textTheme.titleMedium,
           ),
@@ -68,8 +68,9 @@ class Result extends StatelessWidget {
                                     .withOpacity(0.5)
                               ],
                               begin: Alignment.bottomCenter,
-                              end: Alignment.topCenter),
+                              end: Alignment.topCenter),  
                         ),
+                        padding: EdgeInsets.symmetric(vertical: 14,horizontal: 8),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -78,14 +79,13 @@ class Result extends StatelessWidget {
                               radius: 10,
                               backgroundColor: Theme.of(context)
                                   .colorScheme
-                                  .secondaryContainer,
+                                  .primary.withOpacity(0.5),
                               child: Text(
                                 ((e['current_index'] as int) + 1).toString(),
                                 style: TextStyle(
                                     color: Theme.of(context)
                                         .colorScheme
-                                        .primary
-                                        .withOpacity(0.7)),
+                                        .primaryContainer),
                               ),
                             ),
                             const SizedBox(
@@ -104,13 +104,13 @@ class Result extends StatelessWidget {
                                     height: 10,
                                   ),
                                   Text(
-                                    e['user_answer'].toString(),
+                                    'Your Answer - ${e['user_answer']}'.toString(),
                                   ),
                                   const SizedBox(
                                     height: 10,
                                   ),
                                   Text(
-                                    e['correct_answer'].toString(),
+                                    'Correct Answer  -  ${e['correct_answer']}'.toString(),
                                   ),
                                   const SizedBox(
                                     height: 25,
@@ -129,11 +129,12 @@ class Result extends StatelessWidget {
           ),
           CircleAvatar(
             radius: 30,
+            backgroundColor: Theme.of(context).colorScheme.primary.withOpacity(0.3),
             child: IconButton(
               onPressed: ontap,
-              // style: IconButton.styleFrom(
-              //   b
-              // ),
+              style: IconButton.styleFrom(
+                backgroundColor: Theme.of(context).colorScheme.primary.withOpacity(0.5)
+              ),
               icon: const Icon(Icons.restart_alt),
             ),
           )
